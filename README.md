@@ -1,9 +1,9 @@
-# Introduction
+# **Introduction**
 
 Skin cancer is the most common type of cancer. It is the growth of abnormal skin cells on skin exposed to the sun. This type of cancer also can also occur in areas not exposed to sunlight. The most common places for skin cancer to develop are on areas of skin that are exposed to the sun, including the scalp, face, lips, ears, neck, chest, arms and hands, and on the legs in women. However, it can also form in areas that are rarely seen in the light of day: palms, under fingernails or toenails, and areas of the genitals. Currently, deep learning has revolutionised the future as it can solve complex problems. The motivation is to develop a solution that can help dermatologists better support their diagnostic accuracy by ensembling contextual images , reducing the variance of predictions from the model.
 
 
-# Problem
+# **Problem**
 
 Early detection is critical for successful treatment, but accurately identifying the type of skin cancer can be challenging. That's where skin classification using CNN multiclass classification comes in. By training a neural network on a large dataset of skin cancer images, we can develop a highly accurate classification system that can differentiate between the 7 different types of skin cancer.
 
@@ -11,7 +11,7 @@ This approach solves several key problems in skin cancer detection. First, it el
 
 Overall, skin classification using CNN multiclass classification is a powerful tool for improving the accuracy and efficiency of skin cancer detection. By leveraging the power of machine learning, we can help healthcare providers make more informed decisions and ultimately improve patient outcomes.
 
-# Motivation 
+# **Motivation** 
 
 The primary goal of the project is to develop a highly accurate skin cancer classification model using CNN multiclass classification. By training the neural network on a large dataset of skin cancer images, the model aims to differentiate between all seven types of skin cancer with high precision and accuracy.
 
@@ -19,7 +19,7 @@ The project's focus on accuracy and validation based on images is essential in e
 
 Overall, the project's focus on developing an accurate skin cancer classification model using advanced image classification technology is a significant step towards improving skin cancer detection and diagnosis, leading to earlier treatment and better patient outcomes.
 
-# Dataset 
+# **Dataset** 
 
 The HAM10000 dataset is commonly used in skin cancer classification tasks due to its extensive collection of 10,015 dermatoscopic images of pigmented skin lesions, which are classified into seven different types. The dataset provides a representative range of the major diagnostic categories of skin lesions, including Actinic keratoses and intraepithelial carcinoma/Bowen's disease (akiec), basal cell carcinoma (bcc), benign keratosis-like lesions such as solar lentigines/seborrheic keratoses and lichen-planus like keratosis (bkl), dermatofibroma (df), melanoma (mel), melanocytic nevi (nv), and vascular lesions such as angiomas, angiokeratomas, pyogenic granulomas, and haemorrhage, vasc.
 
@@ -111,7 +111,7 @@ By using this dataset in skin cancer classification tasks, researchers and pract
 
 ![png](output_31_0.png)
 
-# Data Pre-Procesing
+# **Data Pre-Procesing**
 
 1. Merging Images with Metadata: Since we have metadata associated with each image, we merge the two by matching the image ID in the metadata to the image file name. This will help us to leverage the metadata information to improve your classification model.
 
@@ -123,6 +123,7 @@ By using this dataset in skin cancer classification tasks, researchers and pract
 
 Overall, by following these data preprocessing steps, we prepare our skin cancer classification dataset for training the neural network model using CNN multiclass classification, which can improve the accuracy and reliability of the model's predictions.
 
+### Merging images from both folders HAM10000_images_part1.zip and HAM10000_images_part2.zip into one dictionary
 ```python
 base_skin_dir = os.path.join('..', "SkinCancer")
 
@@ -151,7 +152,7 @@ label_mapping = {
 reverse_label_mapping = dict((value, key) for key, value in label_mapping.items())
 ```
 
-
+### Creating New Columns for better readability
 ```python
 data = pd.read_csv('HAM10000_metadata.csv')
 
@@ -166,10 +167,6 @@ data = pd.read_csv('HAM10000_metadata.csv')
 ```python
 data.describe(exclude=[np.number])
 ```
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -237,15 +234,9 @@ data.describe(exclude=[np.number])
 </table>
 </div>
 
-
-
-
 ```python
 data.count().isna()
 ```
-
-
-
 
     lesion_id       False
     image_id        False
@@ -255,20 +246,16 @@ data.count().isna()
     sex             False
     localization    False
     dtype: bool
+    
+### Ading cell_type and image_path columns
 ```python
 # Adding cell_type and image_path columns
 data['cell_type'] = data['dx'].map(lesion_type_dict.get)
 data['path'] = data['image_id'].map(imageid_path_dict.get)
 ```
-
-
 ```python
 data.head()
 ```
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -363,22 +350,17 @@ data.head()
 </table>
 </div>
 
-
+### Converting Images Into  Gray scale Numpy array
 ```python
 # Converting Images Into  Gray scale Numpy array
 data['image_pixel'] = data['path'].map(lambda x: np.asarray(Image.open(x).convert('L').resize((28,28))))
 
 ```
-
-
 ```python
 data['image_pixel'].shape
 ```
-
-
-
-
     (10015,)
+ ### Displaying 2 images for each label
 ```python
 # Displaying 2 images for each label
 sample_data = data.groupby('dx').apply(lambda df: df.iloc[:2, [9, 7]])
@@ -390,24 +372,19 @@ for i in range(14):
     plt.title(img_label)
     plt.axis("off")
 plt.show();
-```
-
-
-    
+```   
 ![png](output_32_0.png)
-    
 
+
+### Adding image pixels
 ```python
 # Adding image pixels
 data['image_pixel'] = data['path'].map(lambda x: np.asarray(Image.open(x).resize((28,28))))
 ```
 
-
 ```python
 data.head(5)
 ```
-
-
 
 
 <div>
@@ -535,6 +512,8 @@ plt.show()
 
 
 # Calculate the Pearson correlation coefficient
+
+The resulting correlation matrix shows the pairwise Pearson correlation coefficients between the image_color variable and each of the one-hot encoded dx variables.
 corr = data_encoded[['image_color', 'akiec', 'bcc', 'bkl', 'df', 'mel', 'nv', 'vasc']].corr(method='pearson')
 print(corr)
 ```
