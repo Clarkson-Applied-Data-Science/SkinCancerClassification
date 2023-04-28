@@ -113,15 +113,15 @@ By using this dataset in skin cancer classification tasks, researchers and pract
 
 # Data Pre-Procesing
 
-1. Merging Images with Metadata: Since you have metadata associated with each image, you can merge the two by matching the image ID in the metadata to the image file name. This will help you to leverage the metadata information to improve your classification model.
+1. Merging Images with Metadata: Since we have metadata associated with each image, we merge the two by matching the image ID in the metadata to the image file name. This will help us to leverage the metadata information to improve your classification model.
 
-2. Converting Images to Grayscale: Since color may not be a distinguishing factor for skin lesion classification, you can convert all images to grayscale to reduce the dimensionality of the data and improve the model's performance.
+2. Converting Images to Grayscale: Since color may not be a distinguishing factor for skin lesion classification, we convert all images to grayscale to reduce the dimensionality of the data and improve the model's performance.
 
-3. Resizing Images: You can resize all images to a standardized size of 28x28 pixels, which is small enough to speed up the training process but large enough to retain important details of the skin lesion. This will also help to reduce the computational overhead and improve the model's efficiency.
+3. Resizing Images: we resize all images to a standardized size of 28x28 pixels, which is small enough to speed up the training process but large enough to retain important details of the skin lesion. This will also help to reduce the computational overhead and improve the model's efficiency.
 
-4. Balancing the Dataset: Since the dataset may be imbalanced, you can use oversampling techniques to balance the number of images in each class. This can be done by duplicating the images in the minority class or by generating synthetic images using techniques such as data augmentation. By balancing the dataset, you can prevent the model from being biased towards the majority class and improve its overall performance.
+4. Balancing the Dataset: Since the dataset may be imbalanced, we use oversampling techniques to balance the number of images in each class. We did by duplicating the images in the minority class or by generating synthetic images using techniques such as data augmentation. By balancing the dataset, we prevent the model from being biased towards the majority class and improve its overall performance.
 
-Overall, by following these data preprocessing steps, you can prepare your skin cancer classification dataset for training the neural network model using CNN multiclass classification, which can improve the accuracy and reliability of the model's predictions.
+Overall, by following these data preprocessing steps, we prepare our skin cancer classification dataset for training the neural network model using CNN multiclass classification, which can improve the accuracy and reliability of the model's predictions.
 
 ```python
 base_skin_dir = os.path.join('..', "SkinCancer")
