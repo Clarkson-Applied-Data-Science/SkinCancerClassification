@@ -113,7 +113,7 @@ By using this dataset in skin cancer classification tasks, researchers and pract
 
 # **Data Pre-Procesing**
 
-1. Merging Images with Metadata: Since we have metadata associated with each image, we merge the two by matching the image ID in the metadata to the image file name. This will help us to leverage the metadata information to improve your classification model.
+1. Merging Images with Metadata: Since we have metadata associated with each image, we merge the two by matching the image ID in the metadata to the image file name. This will help us to leverage the metadata information to improve our classification model.
 
 2. Converting Images to Grayscale: Since color may not be a distinguishing factor for skin lesion classification, we convert all images to grayscale to reduce the dimensionality of the data and improve the model's performance.
 
