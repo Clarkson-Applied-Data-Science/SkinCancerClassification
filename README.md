@@ -487,7 +487,7 @@ data.head(5)
 </table>
 </div>
 
-# Correlation matrix
+# **Correlation matrix**
 
 This correlation matrix helps to identify any relationships or dependencies between the RGB value  and Gray Scale of the images and the various diagnosis categories.
 
@@ -510,7 +510,7 @@ plt.show()
 ![png](output_31_5.png)
 
 
-# Calculate the Pearson correlation coefficient
+# **Calculate the Pearson correlation coefficient**
 
 The resulting correlation matrix shows the pairwise Pearson correlation coefficients between the image_color variable and each of the one-hot encoded dx variables.
 corr = data_encoded[['image_color', 'akiec', 'bcc', 'bkl', 'df', 'mel', 'nv', 'vasc']].corr(method='pearson')
@@ -538,19 +538,22 @@ plt.show()
     
 ![png](output_33_1.png)
 
-# Model Evaluation and Deployment
+# **Model Evaluation and Deployment**
 
 The same model architecture is used for both types of images. The model takes input images with a size of 28x28 pixels, regardless of whether they are in grayscale or RGB format.
 
-During the data preprocessing step, the images are converted to grayscale using standard techniques, such as averaging the RGB channels. Then, the images are resized to a fixed size of 28x28 pixels.
+During the data preprocessing step, the images are converted to grayscale using standard techniques, such as averaging the RGB channels. Then, the images are resized to a fixed size of **28x28 pixels**.
 
 After preprocessing, the images are fed into the CNN model, which consists of four convolutional layers followed by three dense layers. The convolutional layers learn important features from the images, while the dense layers classify the images into one of the 7 different types of skin cancer.
 
 The model architecture consists of four convolutional layers and three dense layers.
 
-The first layer is a convolutional layer with 16 filters and a kernel size of 3x3. This layer is followed by a max pooling layer with a pool size of 2x2. The second and third layers are similar to the first layer, with 32 and 64 filters respectively. The fourth layer is a convolutional layer with 128 filters and a kernel size of 3x3, followed by another max pooling layer.
+1.  The first layer is a convolutional layer with 16 filters and a kernel size of 3x3. This layer is followed by a max pooling layer with a pool size of 2x2. 
+2.  The second and third layers are similar to the first layer, with 32 and 64 filters respectively. 
+3.  The fourth layer is a convolutional layer with 128 filters and a kernel size of 3x3, followed by another max pooling layer.
 
-The output of the final max pooling layer is then flattened into a 1D array, and passed through three dense layers with 64, 32, and 7 neurons respectively. The last dense layer has 7 neurons, corresponding to the 7 different types of skin cancer that the model is trained to classify.
+The output of the final max pooling layer is then flattened into a 1D array, and passed through three dense layers with 64, 32, and 7 neurons respectively. 
+The last dense layer has 7 neurons, corresponding to the 7 different types of skin cancer that the model is trained to classify.
 
 The total number of parameters in the model is 132,583, which is a relatively small number for a CNN model. The model is trained to minimize the cross-entropy loss function, and the optimizer used is not specified in the model summary.
 
@@ -594,21 +597,22 @@ Overall, the same CNN architecture is used for both grayscale and RGB images, wi
     Non-trainable params: 0
     _________________________________________________________________
 
-# Model Training Process
+# **Model Training Process**
 
-This is a function for training a given CNN model on a dataset consisting of X_train and Y_train. Here's a breakdown of the different parameters and what they do:
+This is a function for training a given CNN model on a dataset consisting of **X_train and Y_train**. Here's a breakdown of the different parameters and what they do:
 
-model: This parameter takes in the CNN model that we want to train.
-X_train: This is the input data for the model, which is typically a set of images.
-Y_train: This is the output labels for the input data, which specifies the classification of each image.
-EPOCHS: This parameter specifies the number of times the model will train on the entire dataset.
-The train_model function uses the fit method from the Keras library to train the CNN model. The fit method takes in the following parameters:
+1. **model**: This parameter takes in the CNN model that we want to train.
+2. **X_train**: This is the input data for the model, which is typically a set of images.
+3. **Y_train**: This is the output labels for the input data, which specifies the classification of each image.
+4. **EPOCHS**: This parameter specifies the number of times the model will train on the entire dataset.
+The train_model function uses the fit method from the Keras library to train the CNN model. 
 
-X_train: The input data for the model.
-Y_train: The output labels for the input data.
-validation_split: This parameter specifies the percentage of the training data to use as validation data during training. In this case, 20% of the training data is used for validation.
-batch_size: This parameter specifies the number of samples that the model processes at once during training. In this case, the model processes 64 samples at once.
-epochs: This parameter specifies the number of times the model will train on the entire dataset.
+The fit method takes in the following parameters:
+1. **X_train**: The input data for the model.
+2. **Y_train**: The output labels for the input data.
+3. **validation_split**: This parameter specifies the percentage of the training data to use as validation data during training. In this case, 20% of the training data is used for validation.
+3. **batch_size**: This parameter specifies the number of samples that the model processes at once during training. In this case, the model processes 64 samples at once.
+4. **epochs**: This parameter specifies the number of times the model will train on the entire dataset.
 The train_model function returns the training history of the model, which includes information about the loss and accuracy of the model during each epoch of training.
 
 ## **RGB**
@@ -618,7 +622,7 @@ The train_model function returns the training history of the model, which includ
 ## **GrayScale**
 ![png](output_53_2.png)
 
-# Testing the Model
+# **Testing the Model**
 
 To evaluate the performance of the trained model, we use the test_model function. This function takes in the trained model, the test data X_test, and the corresponding ground truth labels Y_test.
 
@@ -630,7 +634,7 @@ To further evaluate the model's performance, we  use the create_confusion_matrix
 
 Both of these functions provide useful information on the performance of the model, and  used to identify areas where the model may need improvement.
 
-## RGB
+## **RGB**
 
 Test Accuracy: 76.086%
     63/63 [==============================] - 0s 1ms/step
@@ -647,11 +651,7 @@ Test Accuracy: 76.086%
         accuracy                           0.76      2003
        macro avg       0.56      0.47      0.50      2003
     weighted avg       0.75      0.76      0.75      2003
-    
-
-
-
-    
+       
 
 
 ## **GrayScale**
@@ -672,21 +672,21 @@ Test Accuracy: 76.086%
        macro avg       0.36      0.31      0.33      2003
     weighted avg       0.66      0.70      0.68      2003
 
-# Balancing 
+# **Balancing** 
 
 After testing our model, we noticed that some classes had more images than others. To ensure that our model is not biased towards any particular class, we decided to balance our dataset by oversampling each class so that they have a similar number of images.
 
 Now that our data is balanced, we can train our model on the new dataset to improve its performance.
 
-## Training the Model based on Balanced Dataset
-## RGB 
+## **Training the Model based on Balanced Dataset**
+## **RGB**
 ![png](output_48_1.png)
 
-## Gray Scale
+## **Gray Scale**
 ![png](output_53_1.png)
 
-## Testing the Model based on Balanced Dataset 
-## RGB 
+## **Testing the Model based on Balanced Dataset** 
+## **RGB**
 Test Accuracy: 96.755%
     63/63 [==============================] - 0s 1ms/step
                   precision    recall  f1-score   support
@@ -703,7 +703,7 @@ Test Accuracy: 96.755%
        macro avg       0.95      0.99      0.97      2003
     weighted avg       0.97      0.97      0.97      2003
 
-## Gray Scale
+## **Gray Scale**
  Test Accuracy: 94.159%
     63/63 [==============================] - 0s 1ms/step
                   precision    recall  f1-score   support
@@ -721,7 +721,7 @@ Test Accuracy: 96.755%
     weighted avg       0.95      0.94      0.94      2003
 
 
-# Challenges
+# **Challenges**
 
 One of the biggest challenges we faced during this project was the limited computing resources we had. Our local machines had low specs and no GPU, which made training deep learning models very slow and impractical. To overcome this limitation, we tried using Google Colab, which provides free access to GPU and TPU resources, but we still faced issues with long training times and occasional disconnections.
 
@@ -729,7 +729,7 @@ To address this issue, we decided to use an **AWS EC2 instance** with a more pow
 
 While using an EC2 instance helped us speed up our training times significantly, it also came with additional costs that needed to be considered. Therefore, we had to be mindful of our resource usage and make sure to terminate our instances when we were done with our work to avoid unnecessary charges.
 
-# Future Work 
+# **Future Work** 
 
 One potential direction for future work is to explore the effects of image augmentation on the model's performance. Instead of oversampling, image augmentation can be used to generate additional training samples by applying transformations to existing images such as rotation, translation, zoom, etc. This approach can improve the model's ability to generalize to new images and reduce overfitting.
 
