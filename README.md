@@ -107,7 +107,7 @@ By using this dataset in skin cancer classification tasks, researchers and pract
 </table>
 </div>
 
-# Sample Images from Dataset 
+# **Sample Images from Dataset** 
 
 ![png](output_31_0.png)
 
@@ -360,7 +360,7 @@ data['image_pixel'] = data['path'].map(lambda x: np.asarray(Image.open(x).conver
 data['image_pixel'].shape
 ```
     (10015,)
- ### Displaying 2 images for each label
+ ### Displaying 2 images for each label for gray scale
 ```python
 # Displaying 2 images for each label
 sample_data = data.groupby('dx').apply(lambda df: df.iloc[:2, [9, 7]])
@@ -493,7 +493,6 @@ This correlation matrix helps to identify any relationships or dependencies betw
 
 The bars are stacked on top of each other, representing the total count of lesions for each diagnosis category, with each color representing a different localization.
 
-The resulting correlation matrix shows the pairwise Pearson correlation coefficients between the image_color variable and each of the one-hot encoded dx variables.
 
 ```python
 # Create contingency table
