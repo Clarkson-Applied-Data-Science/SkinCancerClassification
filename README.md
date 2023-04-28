@@ -513,6 +513,8 @@ plt.show()
 # **Calculate the Pearson correlation coefficient**
 
 The resulting correlation matrix shows the pairwise Pearson correlation coefficients between the image_color variable and each of the one-hot encoded dx variables.
+
+```Python
 corr = data_encoded[['image_color', 'akiec', 'bcc', 'bkl', 'df', 'mel', 'nv', 'vasc']].corr(method='pearson')
 print(corr)
 ```
