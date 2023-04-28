@@ -620,7 +620,7 @@ Overall, the same CNN architecture is used for both grayscale and RGB images, wi
 
 This is a function for training a given CNN model on a dataset consisting of X_train and Y_train. Here's a breakdown of the different parameters and what they do:
 
-model: This parameter takes in the CNN model that you want to train.
+model: This parameter takes in the CNN model that we want to train.
 X_train: This is the input data for the model, which is typically a set of images.
 Y_train: This is the output labels for the input data, which specifies the classification of each image.
 EPOCHS: This parameter specifies the number of times the model will train on the entire dataset.
